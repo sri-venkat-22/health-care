@@ -1,4 +1,5 @@
 const questions = [
+    // ... (your existing questions array)
     {
         question: "1. What sleep issues are you currently experiencing?",
         options: [
@@ -116,14 +117,12 @@ function loadQuestion() {
     optionsContainer.innerHTML = "";
 
     if (currentQuestion.input) {
-        // If the question requires a numeric input
         const inputField = document.createElement("input");
         inputField.type = currentQuestion.input;
         inputField.placeholder = "Enter your answer";
         inputField.required = true;
         optionsContainer.appendChild(inputField);
     } else {
-        // If the question has options
         currentQuestion.options.forEach(option => {
             const optionDiv = document.createElement("div");
             optionDiv.innerHTML = `<input type="radio" name="option" value="${option}" required> ${option}`;
@@ -161,17 +160,43 @@ function showResult() {
     sendResultsToAPI();
 }
 
-function sendResultsToAPI() {
-    fetch('https://your-api-endpoint.com/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ answers: answers })
-    })
-    .then(response => response.json())
-    .then(data => console.log('Success:', data))
-    .catch((error) => console.error('Error:', error));
+async function sendResultsToAPI() {
+    const API_KEY = 'AIzaSyBh7AnlDAPVe9RMoJoBPTpD5re6vRlOpXg'; // Ensure this is valid
+    const prompt = `Based on the following sleep quiz responses, provide a concise recommendation for improving sleep: ${JSON.stringify(answers)}`;
+
+    console.log('Sending prompt to Gemini API:', prompt); // Debug log
+
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                contents: [{ parts: [{ text: prompt }] }]
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log('API Response:', data); // Debug log to inspect the response
+
+        // Adjust this based on the actual response structure
+        const recommendation = data.candidates?.[0]?.content?.parts?.[0]?.text || data.text || 'No recommendation found';
+        displayRecommendation(recommendation);
+    } catch (error) {
+        console.error('Error calling Gemini API:', error);
+        displayRecommendation(`Error: ${error.message || 'Unknown error'}`);
+    }
+}
+
+function displayRecommendation(recommendation) {
+    const recommendationContainer = document.getElementById("recommendation");
+    document.getElementById("recommendation-text").innerText = recommendation;
+    recommendationContainer.style.display = "block";
 }
 
 // Initialize the quiz

@@ -1,0 +1,52 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroNap</title>
+    <link rel="icon" href="logoreal.jpg">
+    <link rel="stylesheet" href="prac.css">
+</head>
+<body>
+    <div id="main-container">
+        <div class="top-nav">
+            <img src="logoreal.jpg" class="logo">
+            <nav class="navbar">
+                <div class="web-name"><a href="#" class="aa">NeuroNap</a></div>
+                <div class="web-name"><a href="#" class="aa">Our Science</a></div>
+                <div class="web-name"><a href="#" class="aa">Employers</a></div>
+                <div class="web-name"><a href="#" class="aa">Clinicians</a></div>
+                <div class="web-name"><a href="#" class="aa">Mission</a></div>
+                <div class="web-name"><a href="#" class="aa">Help Center</a></div>
+                <button type="button" id="quiz-button">Take our sleep quiz</button>
+            </nav>
+        </div>
+        
+        <div class="middle-info">
+            <div class="nrml-space" style="height: 6rem;"></div>
+            <div class="front-info">
+                <div class="segregation">
+                    <div class="big-text">Learn how to<br> sleep again</div>
+                    <div class="description">Sleep better with psychology. Start seeing results in 2 <br>weeks.</div>
+                    <button type="button" id="info-button">Continue</button>
+                    <p class="bot">Are you a clinician? <a href="#">Refer a patient.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("quiz-button").addEventListener("click", function() {
+            window.location.href = "quiz.html"; 
+        });
+        document.getElementById("info-button").addEventListener("click", function() {
+            window.location.href = "quiz.html"; 
+        });
+    </script>
+</body>
+</html>
