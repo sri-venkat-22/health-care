@@ -1,5 +1,4 @@
 const questions = [
-    // ... (your existing questions array)
     {
         question: "1. What sleep issues are you currently experiencing?",
         options: [
@@ -182,9 +181,8 @@ async function sendResultsToAPI() {
         }
 
         const data = await response.json();
-        console.log('API Response:', data); // Debug log to inspect the response
+        console.log('API Response:', data); 
 
-        // Adjust this based on the actual response structure
         const recommendation = data.candidates?.[0]?.content?.parts?.[0]?.text || data.text || 'No recommendation found';
         displayRecommendation(recommendation);
     } catch (error) {
@@ -199,5 +197,5 @@ function displayRecommendation(recommendation) {
     recommendationContainer.style.display = "block";
 }
 
-// Initialize the quiz
+
 loadQuestion();
