@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroNap</title>
+    <link rel="icon" href="logoreal.jpg">
+    <link rel="stylesheet" href="prac.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5eb;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            font-size: 28px;
+            color: #1d3525;
+            margin-bottom: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            background-color: #f7f7f7;
+        }
+
+        select {
+            height: 40px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        #submit-button {
+            background-color: #ff5733;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        #submit-button:hover {
+            background-color: #e64a2e;
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    <div id="main-container" style="background-image: url('bg-img-3.webp'); background-size: cover;">
+        <div class="top-nav">
+            <img src="logo.webp" class="logo">
+            <nav class="navbar">
+                <div id="neuronap"><a href="#" class="aa">NeuroNap</a></div>
+                <div id="oursciences"><a href="#" class="aa">Our Science</a></div>
+                <div id="emp"><a href="#" class="aa">Employers</a></div>
+                <div id="clini"><a href="#" class="aa">Clinicians</a></div>
+                <div id="mission"><a href="#" class="aa">Mission</a></div>
+                <div id="chatbot"><a href="#" class="aa">Help Center</a></div>
+                <button type="button" id="quiz-button">Take our sleep quiz</button>
+            </nav>
+        </div>
+        
+        <div class="middle-info">
+            <div class="nrml-space" style="height: 6rem;"></div>
+            <div class="front-info">
+                <div class="segregation">
+                    <div class="big-text" style="font-size: 2.75rem;">Grow your sleep<br>Practice with<br>NeuroNap</div>
+                    <div class="description" style="font-weight: 400; margin-bottom: 3rem;">Looking to expand your clientele? Stellar Sleep offers a comprehensive package of support services designed to help clinicians focus on what they do best – providing exceptional care to patients.</div>
+                    <button type="button" id="info-button">Continue</button>
+                    <!-- <p class="bot">Are you a clinician? <a href="#">Refer a patient.</a></p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="form-section">
+        <div class="form-container">
+            <h2>Get Started</h2>
+            <form>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="Enter your first name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Enter your last name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="states">Which states are you licensed to practice?</label>
+                        <div class="custom-multiselect">
+                            <div class="select-box" onclick="toggleDropdown()">
+                                <span id="selected-options">Select states</span>
+                                <div class="arrow">&#9662;</div>
+                            </div>
+                            <div class="dropdown-list">
+                                <label><input type="checkbox" value="Hyderabad" onclick="updateSelection()"> Hyderabad</label>
+                                <label><input type="checkbox" value="Vizag" onclick="updateSelection()"> Vizag</label>
+                                <label><input type="checkbox" value="Bengaluru" onclick="updateSelection()"> Bengaluru</label>
+                                <label><input type="checkbox" value="Chennai" onclick="updateSelection()"> Chennai</label>
+                                <label><input type="checkbox" value="Mumbai" onclick="updateSelection()"> Mumbai</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Years of Experience</label>
+                        <select id="experience" name="experience">
+                            <option>Less than 1</option>
+                            <option>1-3</option>
+                            <option>4-7</option>
+                            <option>8+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="patients">What % of your patients are cash pay?</label>
+                        <select id="patients" name="patients">
+                            <option>0-25%</option>
+                            <option>26-50%</option>
+                            <option>51-75%</option>
+                            <option>76-95%</option>
+                            <option>96-100%</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="referral">Where did you hear about us?</label>
+                        <select id="referral" name="referral">
+                            <option>Social Media</option>
+                            <option>Google Search</option>
+                            <option>Referral</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="additional-info">Additional Information</label>
+                        <textarea id="additional-info" name="additional-info" rows="4" placeholder="Enter any additional details"></textarea>
+                    </div>
+                </div>
+                <button type="button" id="submit-button">Submit</button>
+            </form>
+        </div>
+    </section>
+    
+
+    <script>
+        document.getElementById("quiz-button").addEventListener("click", function() {
+            window.location.href = "quiz.html"; 
+        });
+        document.getElementById("info-button").addEventListener("click", function() {
+            window.location.href = "quiz.html"; 
+        });
+        document.getElementById("neuronap").addEventListener("click", function() {
+            window.location.href = "prac.html"; 
+        });
+        document.getElementById("oursciences").addEventListener("click", function() {
+            window.location.href = "ourscience.html"; 
+        });
+        document.getElementById("emp").addEventListener("click", function() {
+            window.location.href = "oemployers.html"; 
+        });
+        document.getElementById("clini").addEventListener("click", function() {
+            window.location.href = "oclinicians.html"; 
+        });
+        document.getElementById("mission").addEventListener("click", function() {
+            window.location.href = "omission.html"; 
+        });
+        document.getElementById("chatbot").addEventListener("click", function() {
+            window.location.href = "ochat.html"; 
+        });
+        document.getElementById("submit-button").addEventListener("click", function() {
+            window.location.href = "oform.html"; 
+        });
+    </script>
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="logo.webp" alt="NeuroNap Logo">
+        </div>
+        
+        <div class="footer-links">
+            <div class="column">
+                <h4>PRODUCT</h4>
+                <a href="ourscience.html">Our Science</a>
+                <a href="omission.html">Our Mission</a>
+                <a href="ochat.html">Help Center</a>
+                <a href="#">Reviews</a>
+                <a href="#">FAQs</a>
+            </div>
+
+            <div class="column">
+                <h4>COMPANY</h4>
+                <a href="oclinicians.html">For Clinicians</a>
+                <a href="oemployers.html">For Employers</a>
+                <a href="#">Affiliates</a>
+            </div>
+
+            <div class="column">
+                <h4>RESOURCES</h4>
+                <a href="#">Blog</a>
+                <a href="#">What is Insomnia?</a>
+                <a href="#">Insomnia Test</a>
+                <a href="#">CBT-I for Insomnia</a>
+            </div>
+        </div>
+
+        <div class="app-links">
+            <p>DOWNLOAD OUR APP</p>
+            <a href="#"><img src="appstore.png" alt="App Store"></a>
+            <a href="#"><img src="playstore.png" alt="Google Play"></a>
+        </div>
+
+
+        <div class="footer-bottom">
+            <p>© 2025 Twenty Nights, Inc.</p>
+            <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+</html>

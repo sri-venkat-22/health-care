@@ -147,14 +147,21 @@ document.getElementById("next-button").addEventListener("click", () => {
     if (currentQuestionIndex < questions.length) {
         loadQuestion();
     } else {
-        showResult();
+        showSummary();
     }
 });
 
-function showResult() {
+function showSummary() {
     document.getElementById("question-container").style.display = "none";
     const resultContainer = document.getElementById("result");
-    resultContainer.innerHTML = `<h2>Your Responses:</h2><pre>${JSON.stringify(answers, null, 2)}</pre>`;
+    let summary = "<h2>Your Sleep Summary:</h2><ul>";
+    
+    questions.forEach((question, index) => {
+        summary += `<li><strong>${question.question}</strong>: ${answers[index]}</li>`;
+    });
+    
+    summary += "</ul>";
+    resultContainer.innerHTML = summary;
     resultContainer.style.display = "block";
     sendResultsToAPI();
 }
@@ -197,5 +204,5 @@ function displayRecommendation(recommendation) {
     recommendationContainer.style.display = "block";
 }
 
-
+// Initialize the quiz
 loadQuestion();

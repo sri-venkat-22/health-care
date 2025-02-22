@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroNap</title>
+    <link rel="icon" href="logoreal.jpg">
+    <link rel="stylesheet" href="prac.css">
+    <style>
+                
+        #our-journey {
+            background-color: #f8f1e8;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        #our-journey h2 {
+            color: #2d2d2d;
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 5px;
+            background-color: #004d40;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2.5px;
+        }
+
+
+        .container {
+            padding: 20px 40px;
+            position: relative;
+            width: 50%;
+        }
+        .left {
+            left: 0;
+            text-align: right;
+        }
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+
+
+        .content {
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            max-width: 350px;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            transform: translateY(-50%);
+        }
+        .left .arrow {
+            right: -15px;
+            border-width: 10px 0 10px 15px;
+            border-color: transparent transparent transparent white;
+        }
+        .right .arrow {
+            left: -15px;
+            border-width: 10px 15px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+
+
+        .content img {
+            width: 60px;
+            height: 60px;
+        }
+
+
+        .btn-container {
+            margin-top: 10px;
+        }
+        .btn-container img {
+            width: 120px;
+            margin: 5px;
+        }
+
+
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 20px;
+            }
+            .container {
+                width: 100%;
+                padding-left: 50px;
+                text-align: left;
+            }
+            .right {
+                left: 0;
+            }
+            .left .arrow, .right .arrow {
+                left: 15px;
+                border-width: 10px 15px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="main-container" style="background-image: url('bg-img-mission.webp'); background-size: cover;">
+        <div class="top-nav">
+            <img src="logo.webp" class="logo">
+            <nav class="navbar">
+                <div id="neuronap"><a href="#" class="aa">NeuroNap</a></div>
+                <div id="oursciences"><a href="#" class="aa">Our Science</a></div>
+                <div id="emp"><a href="#" class="aa">Employers</a></div>
+                <div id="clini"><a href="#" class="aa">Clinicians</a></div>
+                <div id="mission"><a href="#" class="aa">Mission</a></div>
+                <div id="chatbot"><a href="#" class="aa">Help Center</a></div>
+                <button type="button" id="quiz-button">Take our sleep quiz</button>
+            </nav>
+        </div>
+        
+        <div class="middle-info">
+            <div class="nrml-space" style="height: 6rem;"></div>
+            <div class="front-info">
+                <div class="segregation">
+                    <div class="big-text">Hi, We're<br>NeuroNap</div>
+                    <div class="description" style="font-weight: 400;">We’re on a mission to help the hundreds of millions of people in the world who have poor sleep, but can’t get the treatment they need</div>
+                    <button type="button" id="info-button">Continue</button>
+                    <!-- <p class="bot">Are you a clinician? <a href="#">Refer a patient.</a></p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Our Journey Section -->
+<section id="our-journey">
+    <h2>Our Journey</h2>
+    <div class="timeline">
+
+        <div class="container left">
+            <div class="content">
+                <img src="https://cdn-icons-png.flaticon.com/128/3043/3043400.png" alt="Sleep Icon">
+                <h3>We get really bad insomnia... the pandemic worsens it</h3>
+                <p>Our sleep tracking data from a brain wave tracker (EEG) shows a typical week of sleep is 3-6 hours a night.</p>
+            </div>
+            <div class="arrow"></div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <img src="https://cdn-icons-png.flaticon.com/128/1087/1087815.png" alt="Launch Icon">
+                <p>Neuro Nap is developed by us and becomes available on iOS and Android.</p>
+                <div class="btn-container">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="App Store">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/200px-Google_Play_Store_badge_EN.svg.png" alt="Google Play">
+                </div>
+            </div>
+            <div class="arrow"></div>
+        </div>
+
+        <div class="container left">
+            <div class="content">
+                <img src="https://cdn-icons-png.flaticon.com/128/2995/2995733.png" alt="Research Icon">
+                <h3>See evidence of efficacy</h3>
+                <p>We see incredible efficacy data with our first cohort of users, showing a clinically significant decline in ISI (insomnia severity index).</p>
+            </div>
+            <div class="arrow"></div>
+        </div>
+
+        <div class="container right">
+            <div class="content">
+                <img src="https://cdn-icons-png.flaticon.com/128/2784/2784426.png" alt="Study Icon">
+                <h3>Clinical study with leading sleep researchers</h3>
+                <p>We start a clinical study using Neuro Nap’s program on insomnia patients </p>
+            </div>
+            <div class="arrow"></div>
+        </div>
+
+    </div>
+    </section>
+
+    <script>
+        document.getElementById("quiz-button").addEventListener("click", function() {
+            window.location.href = "quiz.html"; 
+        });
+        document.getElementById("info-button").addEventListener("click", function() {
+            window.location.href = "quiz.html"; 
+        });
+        document.getElementById("neuronap").addEventListener("click", function() {
+            window.location.href = "prac.html"; 
+        });
+        document.getElementById("oursciences").addEventListener("click", function() {
+            window.location.href = "ourscience.html"; 
+        });
+        document.getElementById("emp").addEventListener("click", function() {
+            window.location.href = "oemployers.html"; 
+        });
+        document.getElementById("clini").addEventListener("click", function() {
+            window.location.href = "oclinicians.html"; 
+        });
+        document.getElementById("mission").addEventListener("click", function() {
+            window.location.href = "omission.html"; 
+        });
+        document.getElementById("chatbot").addEventListener("click", function() {
+            window.location.href = "ochat.html"; 
+        });
+    </script>
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="logo.webp" alt="NeuroNap Logo">
+        </div>
+        
+        <div class="footer-links">
+            <div class="column">
+                <h4>PRODUCT</h4>
+                <a href="ourscience.html">Our Science</a>
+                <a href="omission.html">Our Mission</a>
+                <a href="ochat.html">Help Center</a>
+                <a href="#">Reviews</a>
+                <a href="#">FAQs</a>
+            </div>
+
+            <div class="column">
+                <h4>COMPANY</h4>
+                <a href="oclinicians.html">For Clinicians</a>
+                <a href="oemployers.html">For Employers</a>
+                <a href="#">Affiliates</a>
+            </div>
+
+            <div class="column">
+                <h4>RESOURCES</h4>
+                <a href="#">Blog</a>
+                <a href="#">What is Insomnia?</a>
+                <a href="#">Insomnia Test</a>
+                <a href="#">CBT-I for Insomnia</a>
+            </div>
+        </div>
+
+        <div class="app-links">
+            <p>DOWNLOAD OUR APP</p>
+            <a href="#"><img src="appstore.png" alt="App Store"></a>
+            <a href="#"><img src="playstore.png" alt="Google Play"></a>
+        </div>
+
+
+        <div class="footer-bottom">
+            <p>© 2025 Twenty Nights, Inc.</p>
+            <a href="#">Terms of Use</a> | <a href="#">Privacy Policy</a>
+        </div>
+    </div>
+</footer>
+</html>

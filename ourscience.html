@@ -5,11 +5,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NeuroNap</title>
-    <link rel="icon" href="logo.webp">
+    <link rel="icon" href="logoreal.jpg">
     <link rel="stylesheet" href="prac.css">
+    <style>
+        .sleep-impact {
+    text-align: center;
+    background-color: #f8f5ef;
+    padding: 50px 20px;
+}
+
+.sleep-impact h2 {
+    font-size: 32px;
+    color: #161616;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.sleep-impact .subtitle {
+    font-size: 18px;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.impact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.impact-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 600px;
+}
+
+.highlight-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ff5733;
+}
+
+.stats {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.stat {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 220px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1d3525;
+}
+
+.stat p {
+    font-size: 16px;
+    color: #444;
+}
+
+    </style>
 </head>
 <body>
-    <div id="main-container">
+    <div id="main-container" style="background-image: url('bg-img-4.webp'); background-size: cover;">
         <div class="top-nav">
             <img src="logo.webp" class="logo">
             <nav class="navbar">
@@ -27,8 +98,8 @@
             <div class="nrml-space" style="height: 6rem;"></div>
             <div class="front-info">
                 <div class="segregation">
-                    <div class="big-text">Learn how to<br> sleep again</div>
-                    <div class="description" style="font-weight: 400;">Sleep better with psychology. Start seeing results in 2 <br>weeks.</div>
+                    <div class="big-text" style="font-size: 3.5rem;">Evidence-Based <br> Sleep Improvement</div>
+                    <div class="description" style="margin-bottom: 2rem; font-weight: 400;">We believe in the power of science to guide your journey in helping<br> you wave goodbye to those sleepless nights.</div>
                     <button type="button" id="info-button">Continue</button>
                     <!-- <p class="bot">Are you a clinician? <a href="#">Refer a patient.</a></p> -->
                 </div>
@@ -36,54 +107,7 @@
         </div>
     </div>
 
-    <section class="sleep-root">
-        <div class="root-container">
-            <div class="left">
-                <div class="hexagon">
-                    <span>Sleep</span>
-                </div>
-                <div class="lines">
-                    <div class="line pink"><span>Anxieties</span></div>
-                    <div class="line purple"><span>Stress from work</span></div>
-                    <div class="line blue"><span>Burnout</span></div>
-                    <div class="line cyan"><span>Financial worries</span></div>
-                    <div class="line green"><span>Lifestyle changes</span></div>
-                    <div class="line yellow"><span>Sleep-related stress</span></div>
-                </div>
-            </div>
-    
-            <div class="right">
-                <h2>Solve your sleep problems at the root</h2>
-                <p>
-                    Insomnia is often a symptom of deeper challenges like anxiety, stress, 
-                    or other things going on in your life. That’s why things like cutting coffee 
-                    and meditation aren’t enough.
-                </p>
-                <button id="redirect-button">Create your customized program</button>
-            </div>
-        </div>
-    </section>
-
-    <section class="how-it-works">
-        <h2>How it works</h2>
-        <div class="steps-container">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Take Our Free Online Sleep Quiz</h3>
-                <p>Help us understand the current state of your sleep and life factors that might impact your sleep.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Get Your Personalized Program</h3>
-                <p>We’ll develop a psychology-based sleep program personalized to your specific needs.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Experience Better Sleep For Life</h3>
-                <p>Instead of “quick fixes” that last days or weeks, we equip you with skills lasting a lifetime.</p>
-            </div>
-        </div>
-    </section>
+   
     
     <script>
         document.getElementById("quiz-button").addEventListener("click", function() {
@@ -110,12 +134,7 @@
         document.getElementById("chatbot").addEventListener("click", function() {
             window.location.href = "ochat.html"; 
         });
-        document.getElementById("redirect-button").addEventListener("click", function() {
-            window.location.href = "quiz.html"; 
-        });
     </script>
- 
-    
 </body>
 <footer>
     <div class="footer-container">
@@ -162,5 +181,4 @@
         </div>
     </div>
 </footer>
-
 </html>
