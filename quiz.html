@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="quiz.css">
     <style>
         body {
-            background-color: #f0f8ff;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f0f8ff, #e6f7ff);
+            font-family: 'Roboto', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,64 +18,186 @@
         }
         .quiz-container {
             max-width: 600px;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
             text-align: center;
+            position: relative;
+            border: 2px solid #4CAF50;
+            transition: transform 0.3s ease;
         }
-        .result {
-            max-width: 600px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #d1e7dd;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+        .quiz-container:hover {
+            transform: scale(1.02);
+        }
+        .progress-bar {
+            width: 80%;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin: 15px auto;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            border-radius: 5px;
+            width: 0;
+            transition: width 0.5s ease-in-out;
+        }
+        #question-container {
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
             text-align: left;
         }
-        #recommendation {
+        .options div {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
+        }
+        .options div:hover {
             background-color: #e6f7ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            max-width: 600px;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+        }
+        .options input[type="number"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100px;
             text-align: center;
         }
         .btn {
             display: block;
             width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
+            padding: 12px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
+            font-size: 1.1em;
+            transition: background 0.3s ease, transform 0.2s ease;
             margin-top: 20px;
         }
         .btn:hover {
-            background-color: #45a049;
+            background: linear-gradient(45deg, #45a049, #3d8b40);
+            transform: scale(1.05);
+        }
+        .result, #recommendation {
+            max-width: 600px;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+        .result {
+            background: linear-gradient(135deg, #d1e7dd, #e6f7ff);
+            animation: slideUp 0.5s ease-out;
+        }
+        #recommendation {
+            background: linear-gradient(135deg, #e6f7ff, #d1e7dd);
         }
         ul {
             list-style-type: none;
             padding: 0;
         }
         li {
+            margin: 15px 0;
+            font-size: 1em;
+            color: #333;
+        }
+        .loading {
+            font-style: italic;
+            color: #666;
             margin: 10px 0;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        /* Back Button (Optional) */
+        .back-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(45deg, #d1e7dd, #e6f7ff);
+            color: #333;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .back-btn:hover {
+            background: linear-gradient(45deg, #e6f7ff, #d1e7dd);
+            transform: scale(1.05);
+        }
+        /* Retry and Share Buttons */
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        .retry-btn, .share-btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .retry-btn:hover, .share-btn:hover {
+            background: linear-gradient(45deg, #45a049, #3d8b40);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
     <div class="quiz-container">
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
         <div id="question-container">
             <h2 id="question"></h2>
             <div id="options" class="options"></div>
         </div>
         <button id="next-button" class="btn">Next</button>
+        <button id="back-button" class="back-btn" style="display:none;">Back</button>
+        <div id="loading" class="loading" style="display:none;">Loading recommendation...</div>
     </div>
     <div id="result" class="result" style="display:none;"></div>
     <div id="recommendation" class="result" style="display:none;">
         <h2>Your Sleep Solution Recommendations:</h2>
         <p id="recommendation-text"></p>
+        <div class="action-buttons">
+            <button class="retry-btn" onclick="retryQuiz()">Retry Quiz</button>
+            <button class="share-btn" onclick="shareResults()">Share Results</button>
+        </div>
     </div>
     <script src="quiz.js"></script>
 </body>

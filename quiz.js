@@ -1,6 +1,7 @@
 const questions = [
+    // ... (your existing questions array remains unchanged)
     {
-        question: "1. What sleep issues are you currently experiencing?",
+    question: "1. What sleep issues are you currently experiencing?",
         options: [
             "Can't fall asleep",
             "Can't stay asleep",
@@ -109,7 +110,13 @@ const questions = [
 let currentQuestionIndex = 0;
 let answers = [];
 
+function updateProgress() {
+    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+    document.getElementById("progress").style.width = `${progress}%`;
+}
+
 function loadQuestion() {
+    updateProgress();
     const currentQuestion = questions[currentQuestionIndex];
     document.getElementById("question").innerText = currentQuestion.question;
     const optionsContainer = document.getElementById("options");
@@ -128,6 +135,9 @@ function loadQuestion() {
             optionsContainer.appendChild(optionDiv);
         });
     }
+
+    // Show back button if not on the first question
+    document.getElementById("back-button").style.display = currentQuestionIndex > 0 ? "block" : "none";
 }
 
 document.getElementById("next-button").addEventListener("click", () => {
@@ -151,8 +161,18 @@ document.getElementById("next-button").addEventListener("click", () => {
     }
 });
 
+document.getElementById("back-button").addEventListener("click", () => {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        answers.pop(); // Remove the last answer
+        loadQuestion();
+    }
+});
+
 function showSummary() {
     document.getElementById("question-container").style.display = "none";
+    document.getElementById("next-button").style.display = "none";
+    document.getElementById("back-button").style.display = "none";
     const resultContainer = document.getElementById("result");
     let summary = "<h2>Your Sleep Summary:</h2><ul>";
     
@@ -172,6 +192,7 @@ async function sendResultsToAPI() {
 
     console.log('Sending prompt to Gemini API:', prompt); // Debug log
 
+    document.getElementById("loading").style.display = "block";
     try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`, {
             method: 'POST',
@@ -195,6 +216,8 @@ async function sendResultsToAPI() {
     } catch (error) {
         console.error('Error calling Gemini API:', error);
         displayRecommendation(`Error: ${error.message || 'Unknown error'}`);
+    } finally {
+        document.getElementById("loading").style.display = "none";
     }
 }
 
@@ -202,6 +225,31 @@ function displayRecommendation(recommendation) {
     const recommendationContainer = document.getElementById("recommendation");
     document.getElementById("recommendation-text").innerText = recommendation;
     recommendationContainer.style.display = "block";
+}
+
+function retryQuiz() {
+    currentQuestionIndex = 0;
+    answers = [];
+    document.getElementById("question-container").style.display = "block";
+    document.getElementById("next-button").style.display = "block";
+    document.getElementById("back-button").style.display = "none";
+    document.getElementById("result").style.display = "none";
+    document.getElementById("recommendation").style.display = "none";
+    loadQuestion();
+}
+
+function shareResults() {
+    const shareText = `Check out my sleep recommendations from NeuroNap: ${document.getElementById("recommendation-text").textContent}\nhttps://yourwebsite.com/quiz`;
+    if (navigator.share) {
+        navigator.share({
+            title: 'NeuroNap Sleep Recommendations',
+            text: shareText,
+            url: 'https://yourwebsite.com/quiz'
+        }).catch(error => console.error('Error sharing:', error));
+    } else {
+        alert('Copy this link to share: ' + shareText);
+        navigator.clipboard.writeText(shareText).then(() => console.log('Text copied to clipboard'));
+    }
 }
 
 // Initialize the quiz
